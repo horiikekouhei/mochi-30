@@ -1,0 +1,106 @@
+!DOCTYPE html
+html lang=ja
+head
+  meta charset=UTF-8
+  title望月隆史 30歳おめでとう！title
+  style
+    body {
+      margin 0;
+      font-family 'Noto Sans JP', sans-serif;
+      background linear-gradient(135deg, #ffecd2, #fcb69f);
+      color #333;
+      text-align center;
+      overflow-x hidden;
+    }
+    header {
+      padding 2em 1em;
+    }
+    h1 {
+      font-size 3em;
+      margin 0;
+      color #ff6b6b;
+      text-shadow 2px 2px 6px rgba(0,0,0,0.2);
+    }
+    h2 {
+      margin-top 0.5em;
+      color #444;
+      font-weight 400;
+    }
+    .video-container {
+      margin 2em auto;
+      max-width 800px;
+      position relative;
+      padding-bottom 56.25%;
+      height 0;
+    }
+    .video-container iframe {
+      position absolute;
+      top 0;
+      left 0;
+      width 100%;
+      height 100%;
+      border-radius 12px;
+      box-shadow 0px 0px 20px rgba(0,0,0,0.3);
+    }
+    .message {
+      margin 2em auto;
+      font-size 1.2em;
+      line-height 1.8;
+      max-width 700px;
+      background rgba(255,255,255,0.8);
+      padding 1.5em;
+      border-radius 15px;
+      box-shadow 0 0 10px rgba(0,0,0,0.1);
+    }
+    button {
+      margin 2em auto;
+      padding 15px 30px;
+      font-size 1.2em;
+      border none;
+      border-radius 12px;
+      background #ff6b6b;
+      color white;
+      cursor pointer;
+      box-shadow 0px 0px 10px rgba(0,0,0,0.3);
+      transition transform 0.2s;
+    }
+    buttonhover {
+      transform scale(1.05);
+    }
+  style
+head
+body
+  header
+    h1🎉 望月隆史 30歳おめでとう！ 🎂h1
+    h2ついに三十路クラブ入会！h2
+  header
+
+  div class=video-container
+    !-- YouTube動画をここに差し替えてください --
+    iframe src=httpswww.youtube.comembedVIDEO_ID
+      title=Happy Birthday Video frameborder=0
+      allow=accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture
+      allowfullscreeniframe
+  div
+
+  div class=message
+    p隆史、30歳おめでとう！✨br
+    これまで以上に輝く未来が待っているよ。br
+    ここからは大人の本気を見せるステージ。brbr
+    ……でも膝はもう無理しないでね（笑）p
+  div
+
+  button onclick=fireConfetti()🎊 クラッカーを鳴らす 🎊button
+
+  script src=httpscdn.jsdelivr.netnpmcanvas-confetti@1.6.0distconfetti.browser.min.jsscript
+  script
+    function fireConfetti() {
+      confetti({
+        particleCount 200,
+        spread 100,
+        origin { y 0.6 }
+      });
+    }
+  script
+body
+html
