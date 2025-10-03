@@ -7,11 +7,12 @@
     body {
       margin: 0;
       font-family: 'Noto Sans JP', sans-serif;
-      /* 元のグラデーション背景 */
       background: linear-gradient(135deg, #ffecd2, #fcb69f);
       color: #333;
       text-align: center;
       overflow-x: hidden;
+      position: relative;
+      height: 100vh;
     }
     header {
       padding: 2em 1em;
@@ -61,7 +62,6 @@
       object-fit: cover;
       border: 2px solid #ff6b6b;
     }
-    /* 吹き出し共通 */
     .bubble {
       position: relative;
       padding: 1em;
@@ -79,25 +79,12 @@
       height: 0;
       border: 10px solid transparent;
     }
-    /* 色分け */
-    .green {
-      background: #4CAF50;
-    }
-    .green::before {
-      border-right-color: #4CAF50;
-    }
-    .blue {
-      background: #2196F3;
-    }
-    .blue::before {
-      border-right-color: #2196F3;
-    }
-    .pink {
-      background: #E91E63;
-    }
-    .pink::before {
-      border-right-color: #E91E63;
-    }
+    .green { background: #4CAF50; }
+    .green::before { border-right-color: #4CAF50; }
+    .blue { background: #2196F3; }
+    .blue::before { border-right-color: #2196F3; }
+    .pink { background: #E91E63; }
+    .pink::before { border-right-color: #E91E63; }
     .signature {
       text-align: right;
       font-weight: bold;
@@ -119,6 +106,22 @@
     button:hover {
       transform: scale(1.05);
     }
+
+    /* バルーン */
+    .balloon {
+      width: 40px;
+      height: 60px;
+      background-color: red;
+      position: absolute;
+      bottom: -80px;
+      border-radius: 50% 50% 50% 50%;
+      opacity: 0.8;
+      animation: floatUp 5s ease-in forwards;
+    }
+    @keyframes floatUp {
+      0% { transform: translateY(0) rotate(0deg); }
+      100% { transform: translateY(-120vh) rotate(360deg); }
+    }
   </style>
 </head>
 <body>
@@ -128,7 +131,6 @@
   </header>
 
   <div class="video-container">
-    <!-- YouTube動画をここに差し替えてください -->
     <iframe src="https://www.youtube.com/embed/VIDEO_ID"
       title="Happy Birthday Video" frameborder="0"
       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -136,7 +138,6 @@
   </div>
 
   <div class="comments">
-    <!-- コメント1（緑） -->
     <div class="comment">
       <img src="icon1.jpg" alt="堀池昂平" class="icon">
       <div class="bubble green">
@@ -150,7 +151,6 @@
       </div>
     </div>
 
-    <!-- コメント2（青） -->
     <div class="comment">
       <img src="icon2.jpg" alt="山田" class="icon">
       <div class="bubble blue">
@@ -159,11 +159,10 @@
           いつも割と頼りにしてます<br>
           いい30代Lifeを過ごしてください。
         </p>
-        <p class="signature">同級生 れいん（山田）</p>
+        <p class="signature">れいん</p>
       </div>
     </div>
 
-    <!-- コメント3（ピンク） -->
     <div class="comment">
       <img src="icon3.jpg" alt="佐藤" class="icon">
       <div class="bubble pink">
@@ -176,16 +175,45 @@
     </div>
   </div>
 
-  <button onclick="fireConfetti()">🎊 クラッカーを鳴らす 🎊</button>
+  <button onclick="celebrate()">🎊 お祝いする 🎊</button>
 
+  <!-- 音楽ファイル -->
+  <audio id="birthdayBGM" src="happy_birthday.mp3"></audio>
+
+  <!-- JS -->
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
   <script>
-    function fireConfetti() {
+    function celebrate() {
+      // クラッカー
       confetti({
         particleCount: 200,
         spread: 100,
         origin: { y: 0.6 }
       });
+
+      // BGM再生
+      const audio = document.getElementById('birthdayBGM');
+      audio.currentTime = 0;
+      audio.play();
+
+      // バルーン生成
+      for(let i=0; i<10; i++){
+        const balloon = document.createElement('div');
+        balloon.className = 'balloon';
+        // 色ランダム
+        const colors = ['red','blue','green','yellow','pink','orange','purple'];
+        balloon.style.backgroundColor = colors[Math.floor(Math.random()*colors.length)];
+        // 横位置ランダム
+        balloon.style.left = Math.random() * 90 + 'vw';
+        // アニメーション遅延ランダム
+        balloon.style.animationDelay = (Math.random() * 2) + 's';
+        document.body.appendChild(balloon);
+
+        // 浮いたら削除
+        balloon.addEventListener('animationend', () => {
+          balloon.remove();
+        });
+      }
     }
   </script>
 </body>
