@@ -42,15 +42,66 @@
       border-radius: 12px;
       box-shadow: 0px 0px 20px rgba(0,0,0,0.3);
     }
-    .message {
+    .comments {
+      max-width: 800px;
       margin: 2em auto;
-      font-size: 1.2em;
-      line-height: 1.8;
-      max-width: 700px;
-      background: rgba(255,255,255,0.8);
-      padding: 1.5em;
-      border-radius: 15px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    .comment {
+      display: flex;
+      align-items: flex-start;
+      margin-bottom: 1.5em;
+      text-align: left;
+    }
+    .comment .icon {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      margin-right: 1em;
+      object-fit: cover;
+      border: 2px solid #ff6b6b;
+    }
+    /* 吹き出し共通 */
+    .bubble {
+      position: relative;
+      padding: 1em;
+      border-radius: 12px;
+      box-shadow: 0 0 8px rgba(0,0,0,0.1);
+      flex: 1;
+      color: white;
+    }
+    .bubble::before {
+      content: "";
+      position: absolute;
+      top: 15px;
+      left: -10px;
+      width: 0;
+      height: 0;
+      border: 10px solid transparent;
+    }
+    /* 色分け */
+    .green {
+      background: #4CAF50;
+    }
+    .green::before {
+      border-right-color: #4CAF50;
+    }
+    .blue {
+      background: #2196F3;
+    }
+    .blue::before {
+      border-right-color: #2196F3;
+    }
+    .pink {
+      background: #E91E63;
+    }
+    .pink::before {
+      border-right-color: #E91E63;
+    }
+    .signature {
+      text-align: right;
+      font-weight: bold;
+      color: #fff;
+      margin-top: 0.5em;
     }
     button {
       margin: 2em auto;
@@ -83,21 +134,45 @@
       allowfullscreen></iframe>
   </div>
 
-  <div class="message">
-    <p>もち、30歳おめでとう！✨<br>
-    これまで以上に輝く未来が待っているよ<br>
-    ここからは大人の本気を見せるステージ<br><br>
-    プロの蝉イーターとして、頑張ってね！<br>
-    </p>
-    <p style="text-align: right">静岡市議会議員 堀池昂平</p>
-  </div>
-  
-   <div class="message">
-    <p>お誕生日おめでとうございます<br>
-    いつも割と頼りにしてます<br>
-    いい30代Lifeを過ごしてください。<br>
-    </p>
-    <p style="text-align: right">れいん</p>
+  <div class="comments">
+    <!-- コメント1（緑） -->
+    <div class="comment">
+      <img src="icon1.jpg" alt="堀池昂平" class="icon">
+      <div class="bubble green">
+        <p>
+          もち、30歳おめでとう！<br>
+          これまで以上に輝く未来が待っているよ。<br>
+          ここからは大人の本気を見せるステージ。<br><br>
+          プロの蝉イーターとして、頑張ってね！
+        </p>
+        <p class="signature">静岡市議会議員 堀池昂平</p>
+      </div>
+    </div>
+
+    <!-- コメント2（青） -->
+    <div class="comment">
+      <img src="icon2.jpg" alt="山田" class="icon">
+      <div class="bubble blue">
+        <p>
+          お誕生日おめでとうございます<br>
+          いつも割と頼りにしてます<br>
+          いい30代Lifeを過ごしてください。
+        </p>
+        <p class="signature">れいん</p>
+      </div>
+    </div>
+
+    <!-- コメント3（ピンク） -->
+    <div class="comment">
+      <img src="icon3.jpg" alt="佐藤" class="icon">
+      <div class="bubble pink">
+        <p>
+          隆史さん、誕生日おめでとうございます！<br>
+          これからも健康第一で頑張ってください！
+        </p>
+        <p class="signature">同僚 佐藤</p>
+      </div>
+    </div>
   </div>
 
   <button onclick="fireConfetti()">🎊 クラッカーを鳴らす 🎊</button>
